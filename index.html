@@ -4,199 +4,364 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#111827">
-  <title>Python 2º ASIR - Parte práctica</title>
+  <title>SREI 2º ASIR · Extraordinaria</title>
   <style>
-    :root{--bg:#0b1020;--panel:#111827;--panel2:#172033;--text:#f3f4f6;--muted:#9ca3af;--blue:#60a5fa;--green:#34d399;--red:#f87171;--border:#2b364b;--code:#070b14}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(circle at top left,rgba(96,165,250,.12),transparent 34%),var(--bg);color:var(--text);line-height:1.55}
-    header{position:sticky;top:0;z-index:10;background:rgba(11,16,32,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-    .top{max-width:1050px;margin:auto;padding:15px 18px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}.top h1{margin:0;font-size:1.15rem}.top p{margin:2px 0 0;color:var(--muted);font-size:.88rem}
-    .progressBox{width:min(330px,100%)}.progressText{display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem;margin-bottom:5px}.progress{height:9px;background:#070b14;border:1px solid var(--border);border-radius:999px;overflow:hidden}.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--green));transition:.25s}
-    main{max-width:1050px;margin:auto;padding:26px 18px 60px}.hero,.patterns{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 14px 36px rgba(0,0,0,.22)}.hero h2,.patterns h2{margin-top:0}.warn{margin-top:15px;border-left:4px solid var(--red);background:rgba(248,113,113,.08);border-radius:9px;padding:13px 15px}.warn strong{color:#fecaca}
-    .toolbar{display:grid;grid-template-columns:1fr auto;gap:10px;margin:20px 0}input[type=search]{width:100%;padding:13px 14px;border:1px solid var(--border);border-radius:11px;background:var(--panel);color:var(--text);font-size:1rem;outline:none}input[type=search]:focus{border-color:var(--blue)}button{border:0;border-radius:9px;padding:10px 13px;font-weight:750;cursor:pointer}.toggle{color:var(--text);background:#253047;border:1px solid var(--border)}
-    .grid{display:grid;gap:15px}.exercise{background:var(--panel);border:1px solid var(--border);border-radius:15px;overflow:hidden}.exercise.exam{border-color:rgba(52,211,153,.75)}.head{padding:17px;display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.head h3{margin:0 0 5px;font-size:1.04rem}.head p{margin:0;color:#d1d5db}.badge{display:inline-block;margin-top:8px;padding:3px 8px;border-radius:999px;background:var(--green);color:#052e26;font-size:.73rem;font-weight:800}.doneLabel{white-space:nowrap;color:var(--muted);font-size:.84rem;display:flex;gap:6px;align-items:center}.doneLabel input{width:18px;height:18px;accent-color:var(--green)}details{border-top:1px solid var(--border)}summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:800;color:#bfdbfe;background:rgba(255,255,255,.015)}summary::-webkit-details-marker{display:none}.solution{padding:0 17px 17px}.code{position:relative;margin-top:13px}pre{margin:0;overflow:auto;padding:17px;border-radius:11px;background:var(--code);border:1px solid #1d293d;color:#e5e7eb;font-family:Consolas,"Cascadia Code",monospace;font-size:.89rem;line-height:1.55}.copy{position:absolute;right:9px;top:9px;padding:6px 9px;background:#1f2937;color:var(--text);border:1px solid #374151;font-size:.76rem}.tip{color:var(--muted);font-size:.88rem;margin:10px 0 0}.hidden{display:none!important}
-    .patterns{margin-top:26px}.patternGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:12px}.pattern{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:13px}.pattern h3{margin:0 0 9px;font-size:.96rem}footer{text-align:center;color:var(--muted);font-size:.83rem;margin-top:25px}
-    @media(max-width:650px){.toolbar{grid-template-columns:1fr}.head{flex-direction:column}.doneLabel{white-space:normal}.progressBox{width:100%}}
+    :root{--bg:#0b1020;--panel:#111827;--panel2:#172033;--text:#f3f4f6;--muted:#9ca3af;--blue:#60a5fa;--green:#34d399;--red:#f87171;--yellow:#fbbf24;--border:#2b364b;--code:#070b14}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(circle at top left,rgba(96,165,250,.12),transparent 34%),var(--bg);color:var(--text);line-height:1.5}
+    header{position:sticky;top:0;z-index:20;background:rgba(11,16,32,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .top{max-width:1100px;margin:auto;padding:14px 18px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .top h1{margin:0;font-size:1.15rem} .top p{margin:2px 0 0;color:var(--muted);font-size:.86rem}
+    .progressBox{width:min(360px,100%)} .progressText{display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem;margin-bottom:5px}
+    .progress{height:9px;background:#070b14;border:1px solid var(--border);border-radius:999px;overflow:hidden}
+    .progress div{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--green));transition:.25s}
+    main{max-width:1100px;margin:auto;padding:24px 18px 60px}
+    .hero,.panel{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--border);border-radius:18px;padding:20px;box-shadow:0 14px 36px rgba(0,0,0,.22)}
+    .hero h2,.panel h2{margin-top:0}
+    .note{margin-top:14px;border-left:4px solid var(--green);background:rgba(52,211,153,.08);border-radius:9px;padding:12px 14px}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+    button{border:0;border-radius:9px;padding:10px 13px;font-weight:750;cursor:pointer}
+    .tab,.toggle{color:var(--text);background:#253047;border:1px solid var(--border)}
+    .tab.active{background:var(--blue);color:#07111f}
+    .toolbar{display:grid;grid-template-columns:minmax(0,1fr) 220px auto auto;gap:9px;margin:18px 0}
+    input[type=search],select{width:100%;padding:12px 13px;border:1px solid var(--border);border-radius:10px;background:var(--panel);color:var(--text);font-size:.95rem;outline:none}
+    input[type=search]:focus,select:focus{border-color:var(--blue)}
+    .grid{display:grid;gap:13px}
+    .exercise{background:var(--panel);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .exercise.real{border-color:rgba(52,211,153,.72)}
+    .exercise.failed{border-color:rgba(248,113,113,.8)}
+    .head{padding:14px 15px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .head h3{margin:0 0 4px;font-size:.98rem}
+    .head p{margin:0;color:#d1d5db;font-size:.93rem}
+    .meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}
+    .badge{display:inline-block;padding:3px 8px;border-radius:999px;background:#26354f;color:#bfdbfe;font-size:.7rem;font-weight:800}
+    .badge.green{background:var(--green);color:#052e26}
+    .badge.red{background:var(--red);color:#3f0808}
+    .doneLabel{white-space:nowrap;color:var(--muted);font-size:.82rem;display:flex;gap:6px;align-items:center}
+    .doneLabel input{width:18px;height:18px;accent-color:var(--green)}
+    details{border-top:1px solid var(--border)}
+    summary{cursor:pointer;list-style:none;padding:12px 15px;font-weight:800;color:#bfdbfe;background:rgba(255,255,255,.015)}
+    summary::-webkit-details-marker{display:none}
+    .solution{padding:0 15px 15px}
+    .options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+    .option{text-align:left;background:#172033;color:var(--text);border:1px solid var(--border);padding:10px 11px;border-radius:9px;font-weight:600}
+    .option:hover{border-color:var(--blue)} .option.correct{background:rgba(52,211,153,.13);border-color:var(--green)} .option.wrong{background:rgba(248,113,113,.13);border-color:var(--red)}
+    .answer{display:none;margin-top:11px;border-left:4px solid var(--blue);background:#0d1525;padding:11px 13px;border-radius:9px}
+    .answer.show{display:block}
+    .answer strong{color:#bfdbfe}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+    .showAnswer{background:#1d4ed8;color:white} .copy{background:#1f2937;color:var(--text);border:1px solid #374151}
+    .good{background:#065f46;color:#d1fae5} .bad{background:#7f1d1d;color:#fee2e2}
+    pre{margin:12px 0 0;overflow:auto;padding:15px;border-radius:10px;background:var(--code);border:1px solid #1d293d;color:#e5e7eb;font-family:Consolas,"Cascadia Code",monospace;font-size:.88rem;line-height:1.55;white-space:pre-wrap}
+    .devAnswer{position:relative} .devAnswer .copy{position:absolute;right:8px;top:8px}
+    .shortQ{color:var(--muted);font-size:.86rem;margin-top:5px}
+    .hidden{display:none!important}
+    .empty{padding:30px;text-align:center;color:var(--muted);background:var(--panel);border:1px solid var(--border);border-radius:14px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:14px}
+    .stat{background:#0d1525;border:1px solid var(--border);border-radius:11px;padding:10px;text-align:center}
+    .stat b{display:block;font-size:1.15rem} .stat span{font-size:.75rem;color:var(--muted)}
+    .cheatGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:11px}
+    .cheat{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:13px}
+    .cheat h3{margin:0 0 8px;color:#bfdbfe}
+    footer{text-align:center;color:var(--muted);font-size:.82rem;margin-top:24px}
+    @media(max-width:800px){.toolbar{grid-template-columns:1fr 1fr}.options{grid-template-columns:1fr}}
+    @media(max-width:560px){.toolbar{grid-template-columns:1fr}.head{flex-direction:column}.doneLabel{white-space:normal}.progressBox{width:100%}.stats{grid-template-columns:1fr 1fr}}
   </style>
 </head>
 <body>
 <header>
   <div class="top">
-    <div><h1>Python 2º ASIR · Parte práctica</h1><p>Banco completo de ejercicios</p></div>
-    <div class="progressBox"><div class="progressText"><span>Progreso</span><span id="progressText">0 de 12</span></div><div class="progress"><div id="progressBar"></div></div></div>
+    <div><h1>SREI 2º ASIR · Extraordinaria</h1><p>Test completo + desarrollo listo para copiar</p></div>
+    <div class="progressBox"><div class="progressText"><span>Progreso total</span><span id="progressText">0 de 0</span></div><div class="progress"><div id="progressBar"></div></div></div>
   </div>
 </header>
+
 <main>
   <section class="hero">
-    <h2>Guía práctica completa</h2>
-    <p>Incluye los 12 ejercicios del banco práctico y el ejercicio extra de contar la letra «a» que apareció en el examen.</p>
-    <div class="warn"><strong>Importante:</strong> no uses <code>sum()</code>, <code>max()</code>, <code>min()</code>, <code>count()</code> ni otras funciones automáticas. Resuelve con <code>for</code>, <code>while</code>, <code>if</code>, listas y acumuladores.</div>
+    <h2>Guía completa sin conexión</h2>
+    <p>Incluye el examen real, todos los simulacros y las respuestas completas de desarrollo. Las tarjetas muestran preguntas compactas para ocupar menos espacio.</p>
+    <div class="note"><strong>Consejo:</strong> en el test selecciona una opción antes de mirar la solución. En desarrollo, intenta recitar primero la estructura y después copia o compara la respuesta.</div>
+    <div class="stats">
+      <div class="stat"><b id="statTotal">0</b><span>preguntas</span></div>
+      <div class="stat"><b id="statDone">0</b><span>dominadas</span></div>
+      <div class="stat"><b id="statFailed">0</b><span>con fallos</span></div>
+      <div class="stat"><b id="statDev">0</b><span>desarrollos</span></div>
+    </div>
   </section>
 
-  <div class="toolbar"><input id="search" type="search" placeholder="Buscar: factorial, lista, suma, primo..."><button id="toggleAll" class="toggle">Mostrar todas las soluciones</button></div>
+  <div class="tabs">
+    <button class="tab active" data-view="test">Tipo test</button>
+    <button class="tab" data-view="dev">Desarrollo</button>
+    <button class="tab" data-view="cheat">Chuleta rápida</button>
+  </div>
 
-  <section class="grid" id="list">
-    <article class="exercise" data-search="positivo negativo cero condicional"><div class="head"><div><h3>Ejercicio 1</h3><p>Solicita un número e indica si es positivo, negativo o cero.</p></div><label class="doneLabel"><input class="done" type="checkbox"> Dominado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>numero = int(input("Introduce un número: "))
+  <div class="toolbar" id="toolbar">
+    <input id="search" type="search" placeholder="Buscar: DNS, DHCP, FTP, correo...">
+    <select id="deckFilter"><option value="all">Todos los modelos</option></select>
+    <button id="onlyFailed" class="toggle">Solo falladas</button>
+    <button id="toggleAll" class="toggle">Abrir todas</button>
+  </div>
 
-if numero &gt; 0:
-    print("El número es positivo")
-elif numero &lt; 0:
-    print("El número es negativo")
-else:
-    print("El número es cero")</code></pre></div></div></details></article>
+  <section class="grid" id="testList"></section>
 
-    <article class="exercise" data-search="dos numeros mayor iguales"><div class="head"><div><h3>Ejercicio 2</h3><p>Pide dos números y muestra cuál es mayor o si son iguales.</p></div><label class="doneLabel"><input class="done" type="checkbox"> Dominado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>numero1 = int(input("Introduce el primer número: "))
-numero2 = int(input("Introduce el segundo número: "))
+  <section id="devView" class="hidden">
+    <section class="panel" style="margin-bottom:14px">
+      <h2>Respuestas de desarrollo</h2>
+      <p>Los títulos están abreviados, pero las respuestas son completas y están listas para copiar.</p>
+      <div class="actions">
+        <button id="copyAllDev" class="showAnswer">Copiar todas las respuestas</button>
+        <button id="downloadDev" class="toggle">Descargar desarrollo en TXT</button>
+      </div>
+    </section>
+    <section class="grid" id="devList"></section>
+  </section>
 
-if numero1 &gt; numero2:
-    print("El mayor es:", numero1)
-elif numero2 &gt; numero1:
-    print("El mayor es:", numero2)
-else:
-    print("Los números son iguales")</code></pre></div></div></details></article>
+  <section id="cheatView" class="hidden">
+    <section class="panel">
+      <h2>Chuleta rápida</h2>
+      <div class="cheatGrid">
+        <div class="cheat"><h3>DNS</h3><p>A = IPv4 · AAAA = IPv6 · PTR = inversa · MX = correo · CNAME = alias · NS = autoritativo · raíz = “.” · AXFR = completa · IXFR = cambios.</p></div>
+        <div class="cheat"><h3>DHCP</h3><p>DORA = Discover, Offer, Request, Ack · reserva = MAC + misma IP · relay = entre subredes · dhclient = renovar en Linux.</p></div>
+        <div class="cheat"><h3>Web</h3><p>HTTP = texto claro · HTTPS = TLS/443 · # = fragmento · ? = parámetros · MIME = tipo/subtipo · 404 = 4xx.</p></div>
+        <div class="cheat"><h3>FTP</h3><p>FTP = 21 · FTPS = FTP + TLS · SFTP = SSH/22 · TFTP = UDP/69 · activo = servidor abre datos · pasivo = cliente.</p></div>
+        <div class="cheat"><h3>Correo</h3><p>SMTP = envío · POP3 = descarga · IMAP = sincroniza · MUA = usuario · MTA = transporte · MDA = entrega · SASL = autentica.</p></div>
+        <div class="cheat"><h3>Multimedia</h3><p>Streaming = transmisión continua · podcast = audio · vodcast = vídeo · SIP = sesiones · RTP = medios · SRTP = cifrado.</p></div>
+      </div>
+    </section>
+  </section>
 
-    <article class="exercise" data-search="nota suspenso aprobado notable sobresaliente"><div class="head"><div><h3>Ejercicio 3</h3><p>Pide una nota de 0 a 10 y muestra su calificación.</p></div><label class="doneLabel"><input class="done" type="checkbox"> Dominado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>nota = float(input("Introduce una nota de 0 a 10: "))
+  <footer>Funciona sin internet · El progreso se guarda en el dispositivo</footer>
+</main>
 
-if nota &lt; 0 or nota &gt; 10:
-    print("Nota no válida")
-elif nota &lt; 5:
-    print("Suspenso")
-elif nota &lt; 7:
-    print("Aprobado")
-elif nota &lt; 9:
-    print("Notable")
-else:
-    print("Sobresaliente")</code></pre></div></div></details></article>
+<script>
+const CARDS = [{"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué característica define al sistema DNS frente a otros sistemas de nombres?", "opts": {"A": "Es centralizado", "B": "Es jerárquico y distribuido", "C": "Es plano y local", "D": "Es independiente de Internet"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué representa el dominio raíz en el sistema DNS?", "opts": {"A": "El dominio de segundo nivel", "B": "Un TLD genérico", "C": "El nivel más alto representado por “.”", "D": "Un dominio privado"}, "ans": "C", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué ocurre en una consulta DNS iterativa?", "opts": {"A": "El servidor resuelve todo", "B": "El cliente consulta a varios servidores", "C": "No se usa caché", "D": "No se devuelven respuestas"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué registro DNS identifica los servidores de correo de un dominio?", "opts": {"A": "A", "B": "TXT", "C": "MX", "D": "SRV"}, "ans": "C", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Cuál es el objetivo principal del protocolo DHCP?", "opts": {"A": "Resolver nombres de dominio", "B": "Automatizar la asignación de direcciones IP y parámetros de red", "C": "Enrutar paquetes entre redes", "D": "Proteger la red frente a ataques"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué mensaje DHCP confirma definitivamente la asignación de una IP?", "opts": {"A": "DHCPREQUEST", "B": "DHCPOFFER", "C": "DHCPDECLINE", "D": "DHCPACK"}, "ans": "D", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué elemento identifica de forma única a un dispositivo para una reserva DHCP?", "opts": {"A": "Dirección IP", "B": "Nombre del host", "C": "Dirección MAC", "D": "Puerta de enlace"}, "ans": "C", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué comando permite renovar una IP asignada por DHCP en Linux?", "opts": {"A": "ip addr", "B": "ifconfig", "C": "dhclient", "D": "route"}, "ans": "C", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Cuál es la función principal de una URL?", "opts": {"A": "Cifrar la comunicación web", "B": "Identificar de forma única un recurso en Internet", "C": "Almacenar datos del usuario", "D": "Ejecutar código en el servidor"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué protocolo añade cifrado a HTTP?", "opts": {"A": "FTP", "B": "SMTP", "C": "SSL/TLS", "D": "DNS"}, "ans": "C", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Cuál es el puerto por defecto de HTTPS?", "opts": {"A": "21", "B": "25", "C": "80", "D": "443"}, "ans": "D", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué módulo de Apache mejora la seguridad web?", "opts": {"A": "mod_cache", "B": "mod_wsgi", "C": "mod_security", "D": "mod_proxy"}, "ans": "C", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Cuál es una característica del FTP estándar?", "opts": {"A": "Utiliza cifrado obligatorio", "B": "Permite transferencia de archivos cliente-servidor", "C": "Solo funciona en entornos Linux", "D": "Opera únicamente sobre UDP"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "En modo activo FTP, ¿quién abre el puerto de datos?", "opts": {"A": "El cliente", "B": "El servidor", "C": "Ambos", "D": "El firewall"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué comando en vsftpd habilita acceso anónimo?", "opts": {"A": "anon_root=YES", "B": "anonymous_enable=YES", "C": "allow_anonymous=YES", "D": "enable_anon=TRUE"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué función tiene la rotación de logs?", "opts": {"A": "Cifrar registros", "B": "Eliminar logs inmediatamente", "C": "Evitar saturación de almacenamiento", "D": "Cambiar permisos"}, "ans": "C", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué registro DNS especifica qué servidor recibe el correo de un dominio?", "opts": {"A": "A", "B": "CNAME", "C": "MX", "D": "TXT"}, "ans": "C", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué característica define a POP3?", "opts": {"A": "Mantiene copia en servidor", "B": "Descarga y elimina mensajes", "C": "Permite múltiples rondas de autenticación", "D": "Enruta mensajes"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué hace SASL?", "opts": {"A": "Cifra mensajes", "B": "Autentica usuarios", "C": "Enruta correos", "D": "Almacena buzones"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué comando SMTP identifica al remitente?", "opts": {"A": "HELO", "B": "RCPT TO", "C": "MAIL FROM", "D": "DATA"}, "ans": "C", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué garantiza la firma digital en el correo electrónico?", "opts": {"A": "Confidencialidad", "B": "Autenticidad e integridad", "C": "Eliminación automática", "D": "Compresión del mensaje"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué requisito puede solicitarse al conectarse a un servidor IRC?", "opts": {"A": "Dirección MAC", "B": "Nickname", "C": "Certificado SSL obligatorio", "D": "Dirección física"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué plataformas XMPP se mencionan para servidores de mensajería instantánea?", "opts": {"A": "Apache y Nginx", "B": "Prosody, Ejabberd y Openfire", "C": "MySQL y PostgreSQL", "D": "Cisco y Juniper"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué tipo de acceso requiere aprobación de un moderador antes de publicar?", "opts": {"A": "Open Access", "B": "Moderated Access", "C": "Anonymous Access", "D": "Invitation Access"}, "ans": "B", "note": ""}, {"deck": "Examen real · Modelo A", "type": "test", "q": "¿Qué protocolo añade una capa adicional verificando alineación entre dominio y DKIM/SPF?", "opts": {"A": "DMARC", "B": "POP3", "C": "FTP", "D": "ARP"}, "ans": "A", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Cuál es la función principal de un servidor DNS?", "opts": {"A": "Almacenar páginas web", "B": "Traducir nombres de dominio en direcciones IP", "C": "Enrutar paquetes", "D": "Asignar direcciones IP dinámicas"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué registro DNS se utiliza para la resolución inversa?", "opts": {"A": "A", "B": "MX", "C": "PTR", "D": "CNAME"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué tipo de consulta DNS requiere que el servidor resuelva completamente la petición?", "opts": {"A": "Iterativa", "B": "Recursiva", "C": "Inversa", "D": "Cacheada"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué tipo de zona DNS es de solo lectura?", "opts": {"A": "Zona primaria", "B": "Zona autoritativa", "C": "Zona secundaria", "D": "Zona directa"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Cuál es el primer mensaje enviado por un cliente DHCP al conectarse a la red?", "opts": {"A": "DHCPREQUEST", "B": "DHCPOFFER", "C": "DHCPDISCOVER", "D": "DHCPACK"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué tipo de asignación DHCP permite que un dispositivo reciba siempre la misma IP?", "opts": {"A": "Rango dinámico", "B": "Exclusión", "C": "Reserva", "D": "Concesión corta"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Cuál es una ventaja de tiempos de concesión cortos?", "opts": {"A": "Menor carga del servidor", "B": "Mayor estabilidad en IPs", "C": "Mejor aprovechamiento de direcciones IP", "D": "Eliminación de renovaciones"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Por qué son necesarios los agentes de retransmisión DHCP?", "opts": {"A": "Para cifrar el tráfico", "B": "Para permitir DHCP entre distintas subredes", "C": "Para acelerar el DNS", "D": "Para evitar reservas"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué símbolo se utiliza para indicar un fragmento en una URL?", "opts": {"A": "&", "B": "/", "C": "#", "D": "?"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Cuál es una característica de HTTP frente a HTTPS?", "opts": {"A": "HTTP cifra la información", "B": "HTTP usa certificados SSL", "C": "HTTP transmite datos en texto claro", "D": "HTTP garantiza autenticidad del servidor"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué es una cookie?", "opts": {"A": "Un script del servidor", "B": "Un fragmento de datos almacenado en el navegador", "C": "Un certificado digital", "D": "Un tipo MIME"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué permite un host virtual?", "opts": {"A": "Usar varios servidores físicos", "B": "Alojar varios dominios en un mismo servidor", "C": "Cifrar la comunicación", "D": "Crear usuarios"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué protocolo combina FTP con SSH?", "opts": {"A": "FTPS", "B": "HTTP/3", "C": "SFTP", "D": "TFTP"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué modo es más adecuado cuando el cliente está detrás de un firewall?", "opts": {"A": "Activo", "B": "Pasivo", "C": "ASCII", "D": "Stream"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué puerto usa TFTP?", "opts": {"A": "21", "B": "22", "C": "69 UDP", "D": "80"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué permite el acceso anónimo?", "opts": {"A": "Acceso cifrado", "B": "Acceso sin autenticación", "C": "Acceso root", "D": "Acceso solo administrador"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué protocolo se utiliza para el envío de correos electrónicos entre servidores?", "opts": {"A": "IMAP", "B": "POP3", "C": "SMTP", "D": "HTTP"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué agente gestiona el transporte entre servidores?", "opts": {"A": "MUA", "B": "MDA", "C": "MTA", "D": "DNS"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué protocolo mantiene los mensajes en el servidor y permite sincronización?", "opts": {"A": "POP3", "B": "IMAP", "C": "SMTP", "D": "DNS"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué campo permite enviar copia oculta?", "opts": {"A": "CC", "B": "BCC", "C": "To", "D": "From"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué estándar ayuda a prevenir la suplantación de identidad?", "opts": {"A": "SPF", "B": "HTTP", "C": "FTP", "D": "ARP"}, "ans": "A", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "El protocolo IRC se basa en qué modelo?", "opts": {"A": "Peer-to-peer", "B": "Cliente-servidor", "C": "Anillo distribuido", "D": "Multicast puro"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué comando se utiliza en IRC para enviar mensajes a canales o usuarios?", "opts": {"A": "SEND", "B": "MSG", "C": "PRIVMSG", "D": "CHAT"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué protocolo usan los servicios de noticias?", "opts": {"A": "NNTP", "B": "SMTP", "C": "FTP", "D": "POP3"}, "ans": "A", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué comando NNTP muestra la lista de grupos disponibles?", "opts": {"A": "SHOW", "B": "LIST", "C": "DISPLAY", "D": "GROUPS"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué formato de audio destaca por ofrecer mejor compresión que MP3 y buena calidad a bitrates bajos?", "opts": {"A": "JPEG", "B": "AAC", "C": "PNG", "D": "H.264"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué formato de imagen conserva la calidad original sin pérdida de datos y soporta transparencia?", "opts": {"A": "JPEG", "B": "MP4", "C": "PNG", "D": "AAC"}, "ans": "C", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué es el streaming según el tema?", "opts": {"A": "Un método de compresión de imágenes", "B": "La transmisión continua de datos multimedia", "C": "Un sistema de cifrado para voz IP", "D": "Un tipo de hardware para videoconferencia"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué diferencia principal existe entre podcast y vodcast?", "opts": {"A": "El podcast usa vídeo y el vodcast solo audio", "B": "El podcast es de audio y el vodcast es de vídeo", "C": "El podcast siempre es en directo y el vodcast no", "D": "No existe diferencia real"}, "ans": "B", "note": ""}, {"deck": "Simulacro 1", "type": "test", "q": "¿Qué significa VoIP?", "opts": {"A": "Video over Internet Process", "B": "Voice over Internal Port", "C": "Voz sobre Protocolo de Internet", "D": "Video on IP Protocol"}, "ans": "C", "note": ""}, {"deck": "Simulacro 2 · extras multimedia", "type": "test", "q": "¿Qué formato de audio se caracteriza por ser de código abierto y libre de licencia?", "opts": {"A": "MP3", "B": "AAC", "C": "Ogg Vorbis", "D": "VLC"}, "ans": "C", "note": ""}, {"deck": "Simulacro 2 · extras multimedia", "type": "test", "q": "¿Qué formato de vídeo fue desarrollado por Google y mejora la eficiencia de compresión frente a H.264?", "opts": {"A": "VP9", "B": "Ogg Vorbis", "C": "SIP", "D": "RTP"}, "ans": "A", "note": ""}, {"deck": "Simulacro 2 · extras multimedia", "type": "test", "q": "¿Qué protocolo está basado en HTTP y fue desarrollado por Apple para streaming?", "opts": {"A": "DASH", "B": "HLS", "C": "SRTP", "D": "SIP"}, "ans": "B", "note": ""}, {"deck": "Simulacro 2 · extras multimedia", "type": "test", "q": "¿Qué dispositivo permite conectar teléfonos analógicos tradicionales a redes IP?", "opts": {"A": "Softphone", "B": "Adaptador Analógico IP, ATA", "C": "Reproductor VLC", "D": "Códec AV1"}, "ans": "B", "note": ""}, {"deck": "Simulacro 2 · extras multimedia", "type": "test", "q": "¿Qué protocolo añade una capa de protección mediante cifrado en videoconferencias?", "opts": {"A": "SRTP", "B": "JPEG", "C": "HLS", "D": "WebP"}, "ans": "A", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué representa el dominio raíz en el sistema DNS?", "opts": {"A": "El dominio de segundo nivel", "B": "Un TLD genérico", "C": "El nivel más alto representado por “.”", "D": "Un dominio privado"}, "ans": "C", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué es un subdominio?", "opts": {"A": "Un dominio de nivel superior", "B": "Un dominio independiente", "C": "Una subdivisión de un dominio principal", "D": "Un alias DNS"}, "ans": "C", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué función cumple un servidor DNS caché?", "opts": {"A": "Resolver zonas primarias", "B": "Almacenar respuestas DNS temporalmente", "C": "Registrar dominios", "D": "Gestionar subdominios"}, "ans": "B", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué tipo de transferencia de zona envía solo los cambios?", "opts": {"A": "AXFR", "B": "IXFR", "C": "DNSSEC", "D": "SOA"}, "ans": "B", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué es DNS dinámico, DDNS?", "opts": {"A": "Un tipo de consulta DNS", "B": "Un DNS más rápido", "C": "Un sistema que actualiza registros al cambiar la IP", "D": "Un protocolo de seguridad"}, "ans": "C", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué modelo de funcionamiento utiliza DHCP?", "opts": {"A": "Punto a punto", "B": "Cliente-servidor", "C": "Peer-to-peer", "D": "Maestro-esclavo"}, "ans": "B", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué ocurre cuando expira una concesión DHCP y no se renueva?", "opts": {"A": "La IP queda bloqueada", "B": "La IP se libera y vuelve al pool", "C": "El cliente mantiene la IP indefinidamente", "D": "El servidor se reinicia"}, "ans": "B", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué información NO suele proporcionar DHCP al cliente?", "opts": {"A": "Dirección IP", "B": "Servidores DNS", "C": "Dirección MAC", "D": "Puerta de enlace"}, "ans": "C", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué tipo de configuración IP se recomienda para servidores críticos?", "opts": {"A": "Dinámica", "B": "SLAAC", "C": "Estática", "D": "Temporal"}, "ans": "C", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué riesgo supone una mala protección del servicio DHCP?", "opts": {"A": "Saturación del DNS", "B": "Ataques de suplantación DHCP", "C": "Pérdida de ancho de banda", "D": "Fallos en la capa física"}, "ans": "B", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué información puede proporcionar DHCP para facilitar el funcionamiento del DNS en el cliente?", "opts": {"A": "Dirección MAC", "B": "Servidor DNS", "C": "Nombre del dominio raíz", "D": "Registro PTR"}, "ans": "B", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué problema puede aparecer si el tiempo de concesión DHCP es muy corto y no se gestiona bien el DNS?", "opts": {"A": "Saturación de servidores raíz", "B": "Cambios frecuentes de IP que desactualizan registros DNS", "C": "Caída del servidor DHCP", "D": "Fallos en el router"}, "ans": "B", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Quién concibió la World Wide Web en 1989?", "opts": {"A": "Bill Gates", "B": "Steve Jobs", "C": "Tim Berners-Lee", "D": "Linus Torvalds"}, "ans": "C", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué modelo sigue el protocolo HTTP?", "opts": {"A": "Peer to Peer", "B": "Cliente-servidor", "C": "Maestro-esclavo", "D": "Publicador-suscriptor"}, "ans": "B", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Cuál es el puerto por defecto de HTTPS?", "opts": {"A": "21", "B": "25", "C": "80", "D": "443"}, "ans": "D", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué cookie se elimina al cerrar el navegador?", "opts": {"A": "Persistente", "B": "De terceros", "C": "De sesión", "D": "Publicitaria"}, "ans": "C", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué servidor web es conocido por su alto rendimiento y ligereza?", "opts": {"A": "Apache", "B": "IIS", "C": "MySQL", "D": "Nginx"}, "ans": "D", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Para qué sirven los registros, logs, del servidor web?", "opts": {"A": "Diseñar la web", "B": "Ejecutar scripts", "C": "Diagnosticar errores y analizar actividad", "D": "Crear certificados"}, "ans": "C", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "En modo activo FTP, ¿quién abre el puerto de datos?", "opts": {"A": "El cliente", "B": "El servidor", "C": "Ambos", "D": "El firewall"}, "ans": "B", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué puerto usa TFTP?", "opts": {"A": "21", "B": "22", "C": "69 UDP", "D": "80"}, "ans": "C", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué ventaja tienen los servidores virtuales FTP?", "opts": {"A": "No necesitan hardware", "B": "Aislamiento y escalabilidad", "C": "No necesitan configuración", "D": "No usan red"}, "ans": "B", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué función tiene la rotación de logs?", "opts": {"A": "Cifrar registros", "B": "Eliminar logs inmediatamente", "C": "Evitar saturación de almacenamiento", "D": "Cambiar permisos"}, "ans": "C", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué agente deposita el mensaje en el buzón del usuario?", "opts": {"A": "MTA", "B": "MDA", "C": "SMTP", "D": "SASL"}, "ans": "B", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué es un Open Relay?", "opts": {"A": "Un servidor que retransmite correo sin restricciones", "B": "Un servidor que cifra todos los mensajes automáticamente", "C": "Un cliente web de correo", "D": "Un registro MX mal configurado"}, "ans": "A", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué garantiza el cifrado de extremo a extremo?", "opts": {"A": "Integridad", "B": "Autenticidad", "C": "Confidencialidad", "D": "Prioridad en entrega"}, "ans": "C", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué requisito puede solicitarse al conectarse a un servidor IRC?", "opts": {"A": "Dirección MAC", "B": "Nickname", "C": "Certificado SSL obligatorio", "D": "Dirección física"}, "ans": "B", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué comando NNTP permite recuperar un mensaje específico?", "opts": {"A": "GET", "B": "FETCH", "C": "ARTICLE", "D": "READ"}, "ans": "C", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué formato de vídeo fue desarrollado por Google y mejora la eficiencia de compresión frente a H.264?", "opts": {"A": "VP9", "B": "Ogg Vorbis", "C": "SIP", "D": "RTP"}, "ans": "A", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué protocolo se emplea para iniciar, modificar y terminar sesiones de comunicación en una red IP?", "opts": {"A": "SIP", "B": "JPEG", "C": "MP3", "D": "PNG"}, "ans": "A", "note": ""}, {"deck": "Simulacro 3", "type": "test", "q": "¿Qué protocolo añade una capa de protección mediante cifrado en videoconferencias?", "opts": {"A": "SRTP", "B": "JPEG", "C": "HLS", "D": "WebP"}, "ans": "A", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Cuál de los siguientes es un TLD genérico, gTLD?", "opts": {"A": ".es", "B": ".uk", "C": ".com", "D": ".europa"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué tipo de sistema de nombres NO utiliza jerarquía?", "opts": {"A": "DNS", "B": "Sistema de nombres jerárquico", "C": "Sistema de nombres plano", "D": "Sistema de dominios"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué ventaja principal ofrece el uso de caché DNS?", "opts": {"A": "Mayor seguridad", "B": "Menor consumo de disco", "C": "Reducción del tiempo de resolución", "D": "Eliminación de servidores raíz"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué registro DNS se utiliza para alias o nombres alternativos?", "opts": {"A": "A", "B": "CNAME", "C": "MX", "D": "PTR"}, "ans": "B", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Por qué las actualizaciones DNS dinámicas pueden suponer un riesgo?", "opts": {"A": "Porque eliminan registros", "B": "Porque pueden afectar a la seguridad", "C": "Porque ralentizan Internet", "D": "Porque no funcionan con DHCP"}, "ans": "B", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué mensaje DHCP confirma definitivamente la asignación de una IP?", "opts": {"A": "DHCPREQUEST", "B": "DHCPOFFER", "C": "DHCPDECLINE", "D": "DHCPACK"}, "ans": "D", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué elemento identifica de forma única a un dispositivo para una reserva DHCP?", "opts": {"A": "Dirección IP", "B": "Nombre del host", "C": "Dirección MAC", "D": "Puerta de enlace"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué parámetro DHCP define el tiempo inicial de arrendamiento?", "opts": {"A": "max-lease-time", "B": "subnet-mask", "C": "default-lease-time", "D": "routers"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué comando permite renovar una IP asignada por DHCP en Linux?", "opts": {"A": "ip addr", "B": "ifconfig", "C": "dhclient", "D": "route"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Dónde se configura normalmente un agente DHCP relay?", "opts": {"A": "En el cliente", "B": "En el servidor DNS", "C": "En un router o dispositivo de red", "D": "En el switch de acceso"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué ventaja aporta el uso de caché DNS en una red con DHCP?", "opts": {"A": "Evita renovar concesiones", "B": "Reduce el tráfico de resolución de nombres", "C": "Elimina la necesidad de DHCP", "D": "Garantiza IP fija"}, "ans": "B", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Cuál es la combinación correcta de funciones entre DNS y DHCP?", "opts": {"A": "DNS asigna IP y DHCP resuelve nombres", "B": "Ambos asignan direcciones IP", "C": "DHCP asigna IP y DNS resuelve nombres", "D": "Ambos resuelven nombres"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué es la World Wide Web, WWW?", "opts": {"A": "Un conjunto de servidores DNS", "B": "Un sistema de información global basado en hipervínculos", "C": "Un protocolo de comunicación seguro", "D": "Un lenguaje de programación web"}, "ans": "B", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué componente de la URL indica el protocolo de comunicación?", "opts": {"A": "Dominio", "B": "Ruta", "C": "Fragmento", "D": "Protocolo"}, "ans": "D", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué estructura tiene un tipo MIME?", "opts": {"A": "Protocolo/puerto", "B": "Usuario/contraseña", "C": "Tipo primario/subtipo", "D": "Dominio/ruta"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué ventaja aportan las extensiones del navegador?", "opts": {"A": "Reducen la velocidad siempre", "B": "Eliminan la necesidad de servidores", "C": "Personalizan funcionalidad y seguridad", "D": "Sustituyen al sistema operativo"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué módulo de Apache mejora la seguridad web?", "opts": {"A": "mod_cache", "B": "mod_wsgi", "C": "mod_security", "D": "mod_proxy"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿A qué categoría pertenece el error HTTP 404?", "opts": {"A": "2xx", "B": "3xx", "C": "4xx", "D": "5xx"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué protocolo combina FTP con SSH?", "opts": {"A": "FTPS", "B": "HTTP/3", "C": "SFTP", "D": "TFTP"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "El comando get sirve para:", "opts": {"A": "Subir archivos", "B": "Descargar archivos", "C": "Crear directorios", "D": "Cambiar permisos"}, "ans": "B", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "El comando ls en FTP:", "opts": {"A": "Elimina archivos", "B": "Lista contenido remoto", "C": "Cambia directorio", "D": "Descarga archivo"}, "ans": "B", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué registran los logs de comandos?", "opts": {"A": "Uso CPU", "B": "Comandos ejecutados por usuarios", "C": "Actualizaciones del sistema", "D": "Firewall externo"}, "ans": "B", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué protocolo cifra la comunicación entre cliente y servidor?", "opts": {"A": "SPF", "B": "DKIM", "C": "SSL/TLS", "D": "POP3"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué hace SASL?", "opts": {"A": "Cifra mensajes", "B": "Autentica usuarios", "C": "Enruta correos", "D": "Almacena buzones"}, "ans": "B", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué puerto utiliza SMTP con SSL/TLS según el documento?", "opts": {"A": "587", "B": "25", "C": "465", "D": "110"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué plataformas XMPP se mencionan para servidores de mensajería instantánea?", "opts": {"A": "Apache y Nginx", "B": "Prosody, Ejabberd y Openfire", "C": "MySQL y PostgreSQL", "D": "Cisco y Juniper"}, "ans": "B", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué lista permite suscripción automática sin aprobación?", "opts": {"A": "Lista Moderada", "B": "Lista Restringida", "C": "Lista Abierta", "D": "Lista Exclusiva"}, "ans": "C", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué tecnología reduce latencia distribuyendo contenido geográficamente?", "opts": {"A": "CDN", "B": "DNS", "C": "SSH", "D": "BIOS"}, "ans": "A", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué es el streaming según el tema?", "opts": {"A": "Un método de compresión de imágenes", "B": "La transmisión continua de datos multimedia", "C": "Un sistema de cifrado para voz IP", "D": "Un tipo de hardware para videoconferencia"}, "ans": "B", "note": ""}, {"deck": "Simulacro 4", "type": "test", "q": "¿Qué diferencia principal existe entre podcast y vodcast según el tema?", "opts": {"A": "El podcast usa vídeo y el vodcast solo audio", "B": "El podcast es de audio y el vodcast es de vídeo", "C": "El podcast siempre es en directo y el vodcast no", "D": "No existe diferencia real"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "¿Cuál es una característica esencial del sistema DNS?", "opts": {"A": "Es centralizado y lineal", "B": "Es distribuido y jerárquico", "C": "Solo funciona en redes locales", "D": "Traduce MAC en nombres"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "¿Qué registro DNS se utiliza habitualmente en la resolución inversa?", "opts": {"A": "MX", "B": "CNAME", "C": "NS", "D": "PTR"}, "ans": "D", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "En una consulta recursiva, el servidor DNS...", "opts": {"A": "Solo devuelve una referencia", "B": "Resuelve la consulta y devuelve la IP al cliente", "C": "Siempre rechaza la petición", "D": "Solo responde si es servidor raíz"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "Una zona secundaria DNS se caracteriza por ser...", "opts": {"A": "La única que admite registros MX", "B": "Una copia de solo lectura de la zona primaria", "C": "Obligatoria en toda red pequeña", "D": "Una zona exclusiva para clientes"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "¿Qué mensaje envía primero un cliente para localizar servidores DHCP disponibles?", "opts": {"A": "DHCPACK", "B": "DHCPOFFER", "C": "DHCPDISCOVER", "D": "DHCPRELEASE"}, "ans": "C", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "Una reserva DHCP permite que un dispositivo...", "opts": {"A": "Reciba siempre la misma IP asociada a su MAC", "B": "Use una IP aleatoria en cada arranque", "C": "No necesite puerta de enlace", "D": "Trabaje sin servidor DHCP"}, "ans": "A", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "En entornos con dispositivos que entran y salen con frecuencia, suele convenir...", "opts": {"A": "Un tiempo de concesión muy largo", "B": "Desactivar DHCP", "C": "Usar tiempos de concesión más cortos", "D": "Eliminar el rango dinámico"}, "ans": "C", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "La función principal de un agente DHCP relay es...", "opts": {"A": "Cifrar las concesiones DHCP", "B": "Comunicar clientes y servidor DHCP en subredes distintas", "C": "Sustituir al servidor DNS", "D": "Convertir IPv4 en IPv6"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "¿Qué aporta HTTPS respecto a HTTP?", "opts": {"A": "Compresión obligatoria", "B": "Cifrado y mayor seguridad en la comunicación", "C": "Elimina la necesidad de navegador", "D": "Solo permite texto plano"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "Dentro de una URL, el fragmento # sirve para...", "opts": {"A": "Indicar el puerto del servidor", "B": "Ir a una parte concreta de la página", "C": "Cambiar el protocolo", "D": "Identificar el dominio raíz"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "Una cookie es...", "opts": {"A": "Un certificado digital del servidor", "B": "Un archivo con información sobre preferencias del usuario", "C": "Un registro DNS temporal", "D": "Una extensión de correo cifrado"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "El uso de hosts virtuales en un servidor web permite...", "opts": {"A": "Servir varios sitios desde un mismo servidor", "B": "Bloquear todas las cookies", "C": "Evitar el uso de HTTPS", "D": "Sustituir los logs del sistema"}, "ans": "A", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "En FTP, el modo pasivo se caracteriza porque...", "opts": {"A": "El servidor inicia siempre la conexión de datos al cliente", "B": "El cliente abre la conexión de datos hacia el servidor", "C": "No existe canal de datos", "D": "Solo funciona con TFTP"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "¿Qué protocolo combina transferencia de archivos con la seguridad de SSH?", "opts": {"A": "TFTP", "B": "FTP", "C": "SFTP", "D": "NNTP"}, "ans": "C", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "TFTP destaca por...", "opts": {"A": "Su gran seguridad y autenticación avanzada", "B": "Su simplicidad, aunque con menos funciones y seguridad", "C": "Usar por defecto el puerto 443", "D": "Ser una variante de correo electrónico"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "¿Qué ventaja destaca en los clientes FTP gráficos?", "opts": {"A": "Interfaz intuitiva y gestión sencilla de archivos", "B": "No necesitan servidor", "C": "Nunca usan autenticación", "D": "Eliminan el ancho de banda consumido"}, "ans": "A", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "¿Qué protocolo se utiliza principalmente para enviar correo entre servidores?", "opts": {"A": "IMAP", "B": "SMTP", "C": "POP3", "D": "NNTP"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "¿Qué afirmación describe mejor a IMAP?", "opts": {"A": "Descarga y normalmente elimina el correo del servidor", "B": "Permite trabajar con los mensajes manteniéndolos sincronizados en el servidor", "C": "Solo sirve para enviar correo saliente", "D": "Es un tipo de alias de buzón"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "MUA significa...", "opts": {"A": "Agente de usuario de correo", "B": "Módulo unificado de autenticación", "C": "Motor universal de archivos", "D": "Mensaje único autenticado"}, "ans": "A", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "MIME se emplea para...", "opts": {"A": "Definir zonas DNS secundarias", "B": "Permitir distintos formatos y adjuntos en el correo", "C": "Crear reservas DHCP", "D": "Gestionar logs de FTP"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "IRC responde a un modelo de comunicación...", "opts": {"A": "Peer to peer puro sin servidor", "B": "Cliente-servidor con canales de conversación", "C": "Basado exclusivamente en correo", "D": "Limitado a videollamadas"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "¿Qué protocolo está asociado a los servicios de noticias?", "opts": {"A": "FTP", "B": "NNTP", "C": "SFTP", "D": "RTP"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "Una lista de distribución se utiliza para...", "opts": {"A": "Asignar direcciones IP", "B": "Enviar mensajes a varios suscriptores o miembros", "C": "Resolver nombres de dominio", "D": "Reproducir contenido multimedia"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "Un cliente de noticias permite al usuario...", "opts": {"A": "Gestionar grupos, leer mensajes y publicar artículos", "B": "Administrar zonas DNS", "C": "Crear hosts virtuales", "D": "Configurar códecs de voz"}, "ans": "A", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "¿Qué formato de audio destaca en el tema por su mejor compresión frente a MP3 a bitrates bajos?", "opts": {"A": "WAV", "B": "AAC", "C": "BMP", "D": "GIF"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "PNG es un formato especialmente adecuado para...", "opts": {"A": "Audio multipista", "B": "Logotipos e imágenes que requieren precisión y transparencia", "C": "Mensajes de correo cifrado", "D": "Telefonía IP"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "El streaming consiste en...", "opts": {"A": "Descargar completamente el archivo antes de reproducirlo siempre", "B": "Reproducir contenido mientras se transmite por la red", "C": "Usar solo audio sin vídeo", "D": "Convertir una IP en un nombre"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "Un vodcast es...", "opts": {"A": "Un podcast exclusivamente de texto", "B": "Un podcast de vídeo", "C": "Una centralita VoIP", "D": "Un servidor NNTP"}, "ans": "B", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "VoIP permite...", "opts": {"A": "Transmitir voz usando redes IP", "B": "Sustituir el protocolo HTTP", "C": "Resolver nombres DNS inversos", "D": "Crear listas de distribución"}, "ans": "A", "note": ""}, {"deck": "PowerPoint · Simulacro guiado", "type": "test", "q": "¿Cuál de los siguientes es un códec de voz citado en el tema?", "opts": {"A": "G.711", "B": "MX", "C": "PTR", "D": "AXFR"}, "ans": "A", "note": ""}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Desarrolla el proceso de resolución de nombres: consultas recursivas, iterativas e inversas.", "ans": "El sistema DNS traduce nombres de dominio, como www.ejemplo.com, en direcciones IP. Es jerárquico y distribuido: raíz “.”, TLD, dominios de segundo nivel y subdominios.\n\nEn una consulta recursiva, el cliente pide a su servidor DNS que resuelva completamente la consulta. Si no tiene la respuesta en caché, el servidor consulta a otros servidores y devuelve la IP final al cliente.\n\nEn una consulta iterativa, el servidor no resuelve todo, sino que devuelve referencias a otros servidores. El proceso típico es: DNS local → raíz → TLD → servidor autoritativo → respuesta.\n\nLa resolución inversa obtiene el nombre de dominio a partir de una IP usando registros PTR, normalmente en zonas inversas como in-addr.arpa.\n\nLa caché DNS almacena respuestas temporalmente para reducir tiempo de resolución y tráfico.", "short": "DNS: recursiva, iterativa e inversa"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Enumera y explica los principales mensajes DHCP.", "ans": "DHCP asigna automáticamente IP, máscara, puerta de enlace y DNS. El proceso principal se recuerda como DORA:\n\nDHCPDISCOVER: el cliente busca servidores DHCP. Es el primer mensaje.\nDHCPOFFER: el servidor ofrece una IP y parámetros.\nDHCPREQUEST: el cliente acepta la oferta y solicita esa IP.\nDHCPACK: el servidor confirma definitivamente la asignación.\n\nOtros mensajes:\nDHCPNAK: el servidor rechaza la configuración.\nDHCPDECLINE: el cliente rechaza una IP porque detecta conflicto.\nDHCPRELEASE: el cliente libera la IP.\nDHCPINFORM: el cliente ya tiene IP y solo pide parámetros.\n\nUna reserva DHCP asocia una MAC con una IP concreta.", "short": "DHCP: mensajes principales (DORA)"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Compara POP3 e IMAP indicando ventajas e inconvenientes.", "ans": "POP3 e IMAP sirven para recibir correo.\n\nPOP3 descarga los mensajes desde el servidor al cliente y, en muchos casos, puede eliminarlos del servidor. Su ventaja es que consume menos almacenamiento en el servidor y permite consultar mensajes descargados. Su inconveniente es que sincroniza mal varios dispositivos.\n\nIMAP mantiene los mensajes en el servidor y sincroniza carpetas, mensajes leídos, eliminados y enviados entre varios dispositivos. Su ventaja es que es ideal para móvil, PC y webmail a la vez. Su inconveniente es que requiere más almacenamiento y depende más de la conexión.\n\nResumen: POP3 descarga; IMAP sincroniza.", "short": "Correo: POP3 frente a IMAP"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Explica en qué consiste la delegación de zonas DNS y para qué se utiliza.", "ans": "La delegación de zonas DNS consiste en asignar la responsabilidad de una parte del espacio de nombres a otros servidores DNS.\n\nPor ejemplo, ejemplo.com puede delegar ventas.ejemplo.com a otros servidores. Para ello se usan registros NS, que indican qué servidores son autoritativos para la zona delegada.\n\nSe utiliza para repartir la administración, mejorar la organización, facilitar la escalabilidad y permitir que departamentos o entidades gestionen sus propios subdominios.\n\nEs habitual en empresas grandes, universidades y proveedores de servicios.", "short": "DNS: delegación de zonas"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Explica los principales registros DNS y su utilidad práctica: A, MX, CNAME, PTR y NS.", "ans": "A: asocia un nombre con una dirección IPv4.\nAAAA: asocia un nombre con una dirección IPv6.\nMX: indica qué servidor recibe el correo de un dominio.\nCNAME: crea un alias hacia otro nombre canónico.\nPTR: permite resolución inversa, es decir, obtener nombre a partir de IP.\nNS: indica qué servidores DNS son autoritativos para una zona.\nTXT: almacena texto y se usa en verificaciones y seguridad de correo como SPF o DKIM.\n\nEstos registros permiten que DNS resuelva servicios web, correo, alias y consultas inversas.", "short": "DNS: registros A, MX, CNAME, PTR y NS"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Describe las diferencias entre FTP, FTPS, SFTP y TFTP, incluyendo puertos, seguridad y casos de uso.", "ans": "FTP transfiere archivos entre cliente y servidor. Usa puerto 21 para control y 20 para datos en modo activo. No cifra la comunicación, por lo que es inseguro.\n\nFTPS es FTP protegido con SSL/TLS. Puede usar 21 en modo explícito o 990 en modo implícito. Se usa cuando se quiere FTP con cifrado.\n\nSFTP funciona sobre SSH y usa el puerto 22. No es lo mismo que FTPS. Proporciona autenticación y cifrado mediante SSH.\n\nTFTP usa UDP 69. Es simple, sin autenticación ni cifrado. Se usa para arranque PXE, firmware o configuraciones de routers.\n\nResumen: FTP = 21 inseguro; FTPS = FTP + TLS; SFTP = SSH 22; TFTP = UDP 69 simple e inseguro.", "short": "FTP, FTPS, SFTP y TFTP"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Explica el funcionamiento general de un servicio de correo electrónico desde que un usuario envía un mensaje hasta que el destinatario lo recibe.", "ans": "El usuario escribe el correo en un MUA, como Outlook, Thunderbird o webmail.\n\nEl MUA envía el mensaje al servidor usando SMTP. El servidor emisor consulta DNS para buscar el registro MX del dominio destinatario. El registro MX indica qué servidor recibe el correo.\n\nEl mensaje viaja entre servidores mediante MTA usando SMTP. Al llegar al servidor destino, el MDA deposita el mensaje en el buzón del usuario.\n\nEl destinatario lee el correo mediante POP3 o IMAP. POP3 descarga mensajes; IMAP los mantiene en el servidor y sincroniza dispositivos.\n\nLa seguridad puede incluir TLS, SASL, SPF, DKIM y DMARC.", "short": "Correo: envío hasta recepción"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Explica qué es un agente de retransmisión DHCP, relay, y cuándo se necesita.", "ans": "Un DHCP relay permite que clientes DHCP de una subred se comuniquen con un servidor DHCP situado en otra subred.\n\nDHCP usa broadcast, y los routers normalmente no reenvían broadcast entre redes. Por eso, si el servidor DHCP está en otra VLAN o subred, el cliente no podría llegar directamente.\n\nEl relay se configura normalmente en un router o dispositivo de capa 3. Recibe la solicitud DHCP del cliente, la reenvía al servidor como unicast y devuelve la respuesta al cliente.\n\nSe necesita cuando hay varias VLAN o subredes y se quiere usar un único servidor DHCP centralizado.", "short": "DHCP relay: función y uso"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Describe los componentes de una URL.", "ans": "Una URL identifica un recurso en Internet.\n\nSus partes principales son:\nProtocolo o esquema: por ejemplo http o https.\nDominio o host: por ejemplo www.ejemplo.com.\nPuerto: por ejemplo :443.\nRuta: ubicación del recurso, como /docs/index.html.\nParámetros: empiezan con ?, por ejemplo ?id=5.\nFragmento: empieza con # y apunta a una parte concreta de la página.\n\nEjemplo:\nhttps://www.ejemplo.com:443/docs/index.html?id=5#apartado1", "short": "URL: componentes"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Describe el espacio de nombres de dominio: raíz, TLD, segundo nivel y subdominios.", "ans": "El espacio de nombres DNS es jerárquico.\n\nEn el nivel más alto está el dominio raíz, representado por un punto “.”.\n\nDebajo están los TLD, como .com, .org, .net o .es.\n\nDespués están los dominios de segundo nivel, como ejemplo.com.\n\nDebajo pueden existir subdominios, como www.ejemplo.com, mail.ejemplo.com o ventas.ejemplo.com.\n\nEsta estructura permite distribuir la administración y hacer que DNS sea escalable.", "short": "DNS: espacio de nombres"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Diferencia MTA, MDA y MUA dentro de la arquitectura del correo.", "ans": "MUA significa Mail User Agent. Es el cliente que usa la persona para enviar y leer correos, como Outlook, Thunderbird o webmail.\n\nMTA significa Mail Transfer Agent. Es el agente que transporta el correo entre servidores usando SMTP.\n\nMDA significa Mail Delivery Agent. Es el agente que entrega o deposita el mensaje en el buzón del usuario destinatario.\n\nResumen: MUA = cliente del usuario; MTA = transporte entre servidores; MDA = entrega al buzón.", "short": "Correo: MUA, MTA y MDA"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Desarrolla el concepto de VoIP, sus protocolos y códecs de voz.", "ans": "VoIP significa Voz sobre Protocolo de Internet. Permite transmitir llamadas de voz usando redes IP en lugar de redes telefónicas tradicionales.\n\nSIP se usa para iniciar, modificar y finalizar sesiones de comunicación.\nRTP transporta audio o vídeo en tiempo real.\nSRTP es una versión segura de RTP que añade cifrado.\n\nLos códecs convierten la voz en datos digitales y la comprimen. Ejemplos: G.711, G.729 y Opus.\n\nTambién existen softphones, que son aplicaciones para llamar por VoIP, y ATA, que conectan teléfonos analógicos a redes IP.\n\nVoIP se usa en centralitas IP, videoconferencias y telefonía empresarial.", "short": "VoIP: protocolos y códecs"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "Diferencia servidor raíz, servidor caché y reenviador DNS.", "ans": "Un servidor raíz pertenece al nivel más alto de DNS. No conoce todas las IP finales, pero dirige hacia los servidores TLD.\n\nUn servidor caché almacena temporalmente respuestas DNS ya consultadas, para responder más rápido si se repite la consulta.\n\nUn reenviador DNS o forwarder recibe consultas que otro DNS no puede resolver y las envía a otro servidor DNS, por ejemplo del proveedor o público.\n\nResumen: raíz = inicio de jerarquía; caché = guarda respuestas; reenviador = manda consultas a otro DNS.", "short": "DNS: raíz, caché y reenviador"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "¿Qué es el DNS dinámico y en qué escenarios resulta útil?", "ans": "El DNS dinámico o DDNS permite actualizar automáticamente registros DNS cuando cambia la dirección IP de un equipo o servidor.\n\nEs útil con IP dinámica, por ejemplo en una casa, pequeña empresa, cámara IP, NAS o servidor doméstico. Si la IP cambia, el DDNS actualiza el nombre para que siga apuntando al equipo correcto.\n\nTambién puede usarse junto con DHCP para actualizar registros DNS cuando un cliente recibe una nueva IP.\n\nVentaja: permite acceder siempre por el mismo nombre. Riesgo: si no se protege, puede permitir actualizaciones DNS no autorizadas.", "short": "DNS dinámico (DDNS)"}, {"deck": "Desarrollo", "type": "desarrollo", "q": "¿Qué papel tienen los logs y la monitorización en DHCP?", "ans": "Los logs y la monitorización en DHCP sirven para controlar el servicio y detectar problemas.\n\nLos logs permiten saber qué cliente recibió una IP, cuándo se concedió, cuándo se renovó, si hubo errores, conflictos de IP o intentos sospechosos.\n\nLa monitorización ayuda a comprobar si el pool de direcciones se está agotando, si hay demasiadas solicitudes, si el servidor está caído o si existe un posible DHCP falso.\n\nTambién permite auditar qué dispositivo usó una IP en un momento concreto.", "short": "DHCP: logs y monitorización"}];
+const testCards = CARDS.filter(c => c.type === "test");
+const devCards = CARDS.filter(c => c.type === "desarrollo");
+let currentView = "test";
+let failedOnly = false;
+let allOpen = false;
 
-    <article class="exercise" data-search="bucle uno diez range"><div class="head"><div><h3>Ejercicio 4</h3><p>Muestra los números del 1 al 10 utilizando un bucle.</p></div><label class="doneLabel"><input class="done" type="checkbox"> Dominado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>for numero in range(1, 11):
-    print(numero)</code></pre></div></div></details></article>
-
-    <article class="exercise exam" data-search="suma uno cien acumulador examen"><div class="head"><div><h3>Ejercicio 5</h3><p>Calcula la suma de los números del 1 al 100.</p><span class="badge">Salió en el examen</span></div><label class="doneLabel"><input class="done" type="checkbox"> Dominado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>suma = 0
-
-for numero in range(1, 101):
-    suma = suma + numero
-
-print("La suma es:", suma)</code></pre></div><p class="tip">La variable acumuladora comienza en 0.</p></div></details></article>
-
-    <article class="exercise" data-search="while cero suma numeros"><div class="head"><div><h3>Ejercicio 6</h3><p>Solicita números hasta introducir 0 y muestra la suma total.</p></div><label class="doneLabel"><input class="done" type="checkbox"> Dominado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>suma = 0
-numero = int(input("Introduce un número: "))
-
-while numero != 0:
-    suma = suma + numero
-    numero = int(input("Introduce otro número: "))
-
-print("La suma total es:", suma)</code></pre></div></div></details></article>
-
-    <article class="exercise" data-search="funcion factorial multiplicacion"><div class="head"><div><h3>Ejercicio 7</h3><p>Define una función que reciba un número y devuelva su factorial.</p></div><label class="doneLabel"><input class="done" type="checkbox"> Dominado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>def factorial(numero):
-    resultado = 1
-
-    for i in range(1, numero + 1):
-        resultado = resultado * i
-
-    return resultado
-
-
-numero = int(input("Introduce un número: "))
-print("El factorial es:", factorial(numero))</code></pre></div></div></details></article>
-
-    <article class="exercise" data-search="funcion primo divisor modulo"><div class="head"><div><h3>Ejercicio 8</h3><p>Define una función que determine si un número es primo.</p></div><label class="doneLabel"><input class="done" type="checkbox"> Dominado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>def es_primo(numero):
-    if numero &lt;= 1:
-        return False
-
-    for divisor in range(2, numero):
-        if numero % divisor == 0:
-            return False
-
-    return True
-
-
-numero = int(input("Introduce un número: "))
-
-if es_primo(numero):
-    print("El número es primo")
-else:
-    print("El número no es primo")</code></pre></div></div></details></article>
-
-    <article class="exercise" data-search="cadena caracteres contar longitud"><div class="head"><div><h3>Ejercicio 9</h3><p>Pide una cadena y muestra cuántos caracteres tiene.</p></div><label class="doneLabel"><input class="done" type="checkbox"> Dominado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>cadena = input("Introduce una cadena: ")
-contador = 0
-
-for caracter in cadena:
-    contador = contador + 1
-
-print("La cadena tiene", contador, "caracteres")</code></pre></div><p class="tip">Se cuenta manualmente, sin usar <code>len()</code>.</p></div></details></article>
-
-    <article class="exercise" data-search="palabra invertida cadena"><div class="head"><div><h3>Ejercicio 10</h3><p>Pide una palabra y muestra la palabra invertida.</p></div><label class="doneLabel"><input class="done" type="checkbox"> Dominado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>palabra = input("Introduce una palabra: ")
-invertida = ""
-
-for letra in palabra:
-    invertida = letra + invertida
-
-print("La palabra invertida es:", invertida)</code></pre></div></div></details></article>
-
-    <article class="exercise exam" data-search="lista mayor valor examen"><div class="head"><div><h3>Ejercicio 11</h3><p>Crea una lista de números y muestra el mayor valor.</p><span class="badge">Salió en el examen</span></div><label class="doneLabel"><input class="done" type="checkbox"> Dominado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>numeros = [5, 12, 3, 20, 8]
-mayor = numeros[0]
-
-for numero in numeros:
-    if numero &gt; mayor:
-        mayor = numero
-
-print("El mayor valor es:", mayor)</code></pre></div><p class="tip">Debe existir una lista. No uses <code>max()</code>.</p></div></details></article>
-
-    <article class="exercise" data-search="diccionario alumnos notas media"><div class="head"><div><h3>Ejercicio 12</h3><p>Crea un diccionario con alumnos y notas, y calcula la media.</p></div><label class="doneLabel"><input class="done" type="checkbox"> Dominado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>alumnos = {
-    "Ana": 8,
-    "Luis": 6,
-    "Marta": 9,
-    "Pedro": 7
+function key(c) {
+  return "srei-v2-" + btoa(unescape(encodeURIComponent(c.deck + "::" + c.q))).replace(/=/g,"");
+}
+function getState(c) {
+  return JSON.parse(localStorage.getItem(key(c)) || '{"done":false,"failed":0}');
+}
+function setState(c,s) {
+  localStorage.setItem(key(c), JSON.stringify(s));
+}
+function esc(s) {
+  return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+}
+function shortQuestion(q) {
+  const map = [
+    [/función principal de un servidor DNS/i,"DNS: función principal"],
+    [/resolución inversa/i,"DNS: resolución inversa"],
+    [/consulta DNS.*recursiva/i,"DNS: consulta recursiva"],
+    [/consulta DNS.*iterativa/i,"DNS: consulta iterativa"],
+    [/zona DNS.*solo lectura/i,"DNS: zona secundaria"],
+    [/primer mensaje.*DHCP/i,"DHCP: primer mensaje"],
+    [/reserva DHCP/i,"DHCP: reserva"],
+    [/concesión.*cort/i,"DHCP: concesión corta"],
+    [/retransmisión DHCP|DHCP relay/i,"DHCP: relay"],
+    [/puerto.*HTTPS/i,"Web: puerto HTTPS"],
+    [/cookie/i,"Web: cookies"],
+    [/host virtual/i,"Web: host virtual"],
+    [/TFTP/i,"TFTP"],
+    [/SFTP/i,"SFTP"],
+    [/POP3/i,"Correo: POP3"],
+    [/IMAP/i,"Correo: IMAP"],
+    [/SMTP/i,"Correo: SMTP"],
+    [/MUA/i,"Correo: MUA"],
+    [/MTA/i,"Correo: MTA"],
+    [/MDA/i,"Correo: MDA"],
+    [/SASL/i,"Correo: SASL"],
+    [/DMARC/i,"Correo: DMARC"],
+    [/IRC/i,"Mensajería: IRC"],
+    [/XMPP/i,"Mensajería: XMPP"],
+    [/NNTP/i,"Noticias: NNTP"],
+    [/streaming/i,"Multimedia: streaming"],
+    [/VoIP/i,"VoIP"],
+    [/SRTP/i,"VoIP: SRTP"]
+  ];
+  for (const [r,t] of map) if (r.test(q)) return t;
+  return q.length > 58 ? q.slice(0,55) + "…" : q;
 }
 
-suma = 0
-contador = 0
+function populateDecks() {
+  const decks = [...new Set(testCards.map(c=>c.deck))];
+  const sel = document.getElementById("deckFilter");
+  decks.forEach(d => {
+    const o = document.createElement("option");
+    o.value = d; o.textContent = d; sel.appendChild(o);
+  });
+}
 
-for alumno in alumnos:
-    suma = suma + alumnos[alumno]
-    contador = contador + 1
+function renderTest() {
+  const list = document.getElementById("testList");
+  const q = document.getElementById("search").value.toLowerCase().trim();
+  const deck = document.getElementById("deckFilter").value;
+  let shown = testCards.filter(c => {
+    const st = getState(c);
+    return (deck==="all" || c.deck===deck) &&
+           (!failedOnly || st.failed>0) &&
+           (!q || (c.q+" "+c.deck+" "+Object.values(c.opts).join(" ")).toLowerCase().includes(q));
+  });
+  list.innerHTML = "";
+  if (!shown.length) {
+    list.innerHTML = '<div class="empty">No hay preguntas con estos filtros.</div>';
+    return;
+  }
+  const counters = {};
+  testCards.forEach(c => counters[c.deck]=(counters[c.deck]||0)+1);
+  const running = {};
+  shown.forEach((c,idx) => {
+    running[c.deck]=(running[c.deck]||0)+1;
+    const st = getState(c);
+    const art = document.createElement("article");
+    art.className = "exercise " + (c.deck.includes("Examen real") ? "real " : "") + (st.failed>0 ? "failed" : "");
+    art.dataset.search = c.q.toLowerCase();
+    const opts = Object.entries(c.opts).map(([k,v])=>`<button class="option" data-letter="${k}"><b>${k}.</b> ${esc(v)}</button>`).join("");
+    art.innerHTML = `
+      <div class="head">
+        <div>
+          <h3>${esc(shortQuestion(c.q))}</h3>
+          <p title="${esc(c.q)}">${esc(c.q)}</p>
+          <div class="meta">
+            <span class="badge">${esc(c.deck)}</span>
+            ${c.deck.includes("Examen real")?'<span class="badge green">Examen real</span>':''}
+            ${st.failed>0?`<span class="badge red">${st.failed} fallo(s)</span>`:''}
+          </div>
+        </div>
+        <label class="doneLabel"><input class="doneCheck" type="checkbox" ${st.done?'checked':''}> Dominada</label>
+      </div>
+      <details ${allOpen?'open':''}>
+        <summary>Responder / ver solución</summary>
+        <div class="solution">
+          <div class="options">${opts}</div>
+          <div class="actions">
+            <button class="showAnswer">Mostrar respuesta</button>
+            <button class="bad">Marcar fallo</button>
+            <button class="good">Marcar acertada</button>
+          </div>
+          <div class="answer"><strong>Correcta: ${c.ans}.</strong> ${esc(c.opts[c.ans])}${c.note?`<br><br>${esc(c.note)}`:''}</div>
+        </div>
+      </details>`;
+    const optionEls = [...art.querySelectorAll(".option")];
+    const answer = art.querySelector(".answer");
+    optionEls.forEach(btn => btn.addEventListener("click", () => {
+      optionEls.forEach(x=>x.classList.remove("correct","wrong"));
+      if (btn.dataset.letter === c.ans) {
+        btn.classList.add("correct");
+        const s=getState(c); s.done=true; setState(c,s);
+      } else {
+        btn.classList.add("wrong");
+        optionEls.find(x=>x.dataset.letter===c.ans).classList.add("correct");
+        const s=getState(c); s.failed+=1; setState(c,s);
+      }
+      answer.classList.add("show");
+      updateStats();
+    }));
+    art.querySelector(".showAnswer").addEventListener("click",()=>{
+      answer.classList.toggle("show");
+      optionEls.find(x=>x.dataset.letter===c.ans).classList.add("correct");
+    });
+    art.querySelector(".bad").addEventListener("click",()=>{
+      const s=getState(c); s.failed+=1; s.done=false; setState(c,s); renderTest(); updateStats();
+    });
+    art.querySelector(".good").addEventListener("click",()=>{
+      const s=getState(c); s.done=true; if(s.failed>0)s.failed-=1; setState(c,s); renderTest(); updateStats();
+    });
+    art.querySelector(".doneCheck").addEventListener("change",e=>{
+      const s=getState(c); s.done=e.target.checked; setState(c,s); updateStats();
+    });
+    list.appendChild(art);
+  });
+}
 
-media = suma / contador
-print("La media de las notas es:", media)</code></pre></div></div></details></article>
+function renderDev() {
+  const list=document.getElementById("devList");
+  const q=document.getElementById("search").value.toLowerCase().trim();
+  list.innerHTML="";
+  devCards.filter(c=>!q || (c.q+" "+c.ans).toLowerCase().includes(q)).forEach((c,i)=>{
+    const st=getState(c);
+    const art=document.createElement("article");
+    art.className="exercise";
+    art.innerHTML=`
+      <div class="head">
+        <div>
+          <h3>${i+1}. ${esc(c.short||shortQuestion(c.q))}</h3>
+          <p class="shortQ">${esc(c.q)}</p>
+        </div>
+        <label class="doneLabel"><input class="doneCheck" type="checkbox" ${st.done?'checked':''}> Dominada</label>
+      </div>
+      <details ${allOpen?'open':''}>
+        <summary>Ver respuesta completa</summary>
+        <div class="solution">
+          <div class="devAnswer">
+            <button class="copy">Copiar</button>
+            <pre>${esc(c.ans)}</pre>
+          </div>
+        </div>
+      </details>`;
+    art.querySelector(".copy").addEventListener("click",e=>copyText(c.ans,e.target));
+    art.querySelector(".doneCheck").addEventListener("change",e=>{
+      const s=getState(c);s.done=e.target.checked;setState(c,s);updateStats();
+    });
+    list.appendChild(art);
+  });
+}
 
-    <article class="exercise exam" data-search="letra a palabra contar examen extra"><div class="head"><div><h3>Ejercicio extra del examen</h3><p>Pide una palabra y muestra cuántas veces aparece la letra «a».</p><span class="badge">Salió en el examen</span></div><label class="doneLabel"><input class="extra" type="checkbox"> Practicado</label></div><details><summary>Ver solución</summary><div class="solution"><div class="code"><button class="copy">Copiar</button><pre><code>palabra = input("Introduce una palabra: ")
-contador = 0
+async function copyText(txt,btn) {
+  try{await navigator.clipboard.writeText(txt)}catch{
+    const t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();
+  }
+  const old=btn.textContent;btn.textContent="Copiado";setTimeout(()=>btn.textContent=old,1100);
+}
+function allDevelopmentText() {
+  return devCards.map((c,i)=>`${i+1}. ${c.short||c.q}\n\n${c.ans}`).join("\n\n==============================\n\n");
+}
+function updateStats() {
+  const all=[...testCards,...devCards];
+  const done=all.filter(c=>getState(c).done).length;
+  const failed=testCards.filter(c=>getState(c).failed>0).length;
+  document.getElementById("statTotal").textContent=all.length;
+  document.getElementById("statDone").textContent=done;
+  document.getElementById("statFailed").textContent=failed;
+  document.getElementById("statDev").textContent=devCards.length;
+  document.getElementById("progressText").textContent=`${done} de ${all.length}`;
+  document.getElementById("progressBar").style.width=`${all.length?done/all.length*100:0}%`;
+}
+function setView(v) {
+  currentView=v;
+  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.view===v));
+  document.getElementById("testList").classList.toggle("hidden",v!=="test");
+  document.getElementById("devView").classList.toggle("hidden",v!=="dev");
+  document.getElementById("cheatView").classList.toggle("hidden",v!=="cheat");
+  document.getElementById("deckFilter").classList.toggle("hidden",v!=="test");
+  document.getElementById("onlyFailed").classList.toggle("hidden",v!=="test");
+  document.getElementById("toggleAll").classList.toggle("hidden",v==="cheat");
+  if(v==="test")renderTest();
+  if(v==="dev")renderDev();
+}
+populateDecks();
+renderTest();renderDev();updateStats();
 
-for letra in palabra:
-    if letra == "a":
-        contador = contador + 1
-
-print("La letra a aparece", contador, "veces")</code></pre></div><p class="tip">No uses <code>palabra.count("a")</code>.</p></div></details></article>
-  </section>
-
-  <section class="patterns"><h2>Patrones que debes memorizar</h2><div class="patternGrid">
-    <div class="pattern"><h3>Acumulador</h3><pre><code>suma = 0
-for numero in datos:
-    suma = suma + numero</code></pre></div>
-    <div class="pattern"><h3>Contador</h3><pre><code>contador = 0
-for elemento in datos:
-    if condicion:
-        contador += 1</code></pre></div>
-    <div class="pattern"><h3>Mayor de una lista</h3><pre><code>mayor = lista[0]
-for numero in lista:
-    if numero &gt; mayor:
-        mayor = numero</code></pre></div>
-    <div class="pattern"><h3>Invertir palabra</h3><pre><code>invertida = ""
-for letra in palabra:
-    invertida = letra + invertida</code></pre></div>
-  </div></section>
-  <footer>Funciona sin conexión · El progreso se guarda en el dispositivo</footer>
-</main>
-<script>
-  const cards=[...document.querySelectorAll('.exercise')];
-  const checks=[...document.querySelectorAll('.done')];
-  const allChecks=[...document.querySelectorAll('.done,.extra')];
-  const bar=document.getElementById('progressBar');
-  const text=document.getElementById('progressText');
-  function update(){const n=checks.filter(x=>x.checked).length;text.textContent=`${n} de ${checks.length}`;bar.style.width=`${n/checks.length*100}%`;allChecks.forEach((c,i)=>localStorage.setItem('py-practica-'+i,c.checked?'1':'0'))}
-  allChecks.forEach((c,i)=>{c.checked=localStorage.getItem('py-practica-'+i)==='1';c.addEventListener('change',update)});update();
-  document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.toLowerCase().trim();cards.forEach(c=>c.classList.toggle('hidden',!(c.innerText+' '+c.dataset.search).toLowerCase().includes(q)))})
-  let open=false;document.getElementById('toggleAll').addEventListener('click',e=>{open=!open;document.querySelectorAll('details').forEach(d=>d.open=open);e.target.textContent=open?'Ocultar todas las soluciones':'Mostrar todas las soluciones'});
-  document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const code=b.nextElementSibling.innerText;try{await navigator.clipboard.writeText(code)}catch{const t=document.createElement('textarea');t.value=code;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar',1100)}));
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>setView(b.dataset.view)));
+document.getElementById("search").addEventListener("input",()=>currentView==="test"?renderTest():renderDev());
+document.getElementById("deckFilter").addEventListener("change",renderTest);
+document.getElementById("onlyFailed").addEventListener("click",e=>{
+  failedOnly=!failedOnly;e.target.textContent=failedOnly?"Ver todas":"Solo falladas";e.target.classList.toggle("bad",failedOnly);renderTest();
+});
+document.getElementById("toggleAll").addEventListener("click",e=>{
+  allOpen=!allOpen;document.querySelectorAll("details").forEach(d=>d.open=allOpen);e.target.textContent=allOpen?"Cerrar todas":"Abrir todas";
+});
+document.getElementById("copyAllDev").addEventListener("click",e=>copyText(allDevelopmentText(),e.target));
+document.getElementById("downloadDev").addEventListener("click",()=>{
+  const blob=new Blob([allDevelopmentText()],{type:"text/plain;charset=utf-8"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="respuestas_desarrollo_SREI.txt";a.click();URL.revokeObjectURL(a.href);
+});
 </script>
 </body>
 </html>
